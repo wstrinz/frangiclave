@@ -1,0 +1,8 @@
+{
+  "name": "frangiclave",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular",
+  "pro_id": "786e62e9"
+}
