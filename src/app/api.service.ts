@@ -4,7 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 @Injectable({
   providedIn: 'root',
 })
-export class AuthService {
+export class ApiService {
   constructor(public http: HttpClient) {}
 
   public cookieLogin(username, password) {
@@ -21,7 +21,21 @@ export class AuthService {
     body.set('commit', 'Log in');
 
     this.http
-      .post('http://localhost:3000/users/sign_in', body.toString(), requestOptions)
+      .post(`${this.apiBase}/users/sign_in`, body.toString(), requestOptions)
       .subscribe(resp => console.log('goodresp!', resp), error => console.log('badresp!', error));
+  }
+
+  public getUsers() {
+    let headers = new HttpHeaders({
+      Accept: 'application/json',
+    });
+    let requestOptions = { headers: headers, withCredentials: true };
+    this.http
+      .get(`${this.apiBase}/users`, requestOptions)
+      .subscribe(resp => console.log('user good resp!', resp), error => console.log('user badresp!', error));
+  }
+
+  public get apiBase() {
+    return 'https://9ede6bb6.ngrok.io';
   }
 }

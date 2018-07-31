@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AuthService } from '../auth.service';
+import { ApiService } from '../api.service';
 import { CookieService } from 'ngx-cookie';
 
 @Component({
@@ -10,10 +10,15 @@ import { CookieService } from 'ngx-cookie';
 export class HomePage {
   public username: string = 'user@example.com';
   public password: string = 'password';
+  public users = [];
 
-  constructor(public authService: AuthService, public cookieService: CookieService) {}
+  constructor(public apiService: ApiService, public cookieService: CookieService) {}
 
   public submit() {
-    this.authService.cookieLogin(this.username, this.password);
+    this.apiService.cookieLogin(this.username, this.password);
+  }
+
+  public fetchUsers() {
+    this.apiService.getUsers();
   }
 }
