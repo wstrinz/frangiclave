@@ -36,6 +36,6 @@ export class ApiService {
   }
 
   public get apiBase() {
-    return 'https://9ede6bb6.ngrok.io';
+    return 'https://9e22bf5c.ngrok.io';
   }
 }
