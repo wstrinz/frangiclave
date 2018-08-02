@@ -20,9 +20,14 @@ export class ApiService {
     body.set('user[password]', password);
     body.set('commit', 'Log in');
 
-    this.http
-      .post(`${this.apiBase}/users/sign_in`, body.toString(), requestOptions)
-      .subscribe(resp => console.log('goodresp!', resp), error => console.log('badresp!', error));
+    this.http.post(`${this.apiBase}/users/sign_in`, body.toString(), requestOptions).subscribe(
+      resp => {
+        console.log('goodresp!', resp);
+      },
+      error => {
+        console.log('badresp!', error);
+      }
+    );
   }
 
   public getUsers() {
@@ -30,12 +35,17 @@ export class ApiService {
       Accept: 'application/json',
     });
     let requestOptions = { headers: headers, withCredentials: true };
-    this.http
-      .get(`${this.apiBase}/users`, requestOptions)
-      .subscribe(resp => console.log('user good resp!', resp), error => console.log('user badresp!', error));
+    this.http.get(`${this.apiBase}/users`, requestOptions).subscribe(
+      resp => {
+        console.log('user good resp!', resp);
+      },
+      error => {
+        console.log('user badresp!', error);
+      }
+    );
   }
 
   public get apiBase() {
-    return 'https://9e22bf5c.ngrok.io';
+    return '/api';
   }
 }
